@@ -24,7 +24,7 @@ class Thing(Base):
         dc_type = Column(String)
 
         # many to many relationship for spatials
-        dcterms_spatials = relation('DCMI_point', secondary='', backref='things')
+        dcterms_spatials = relation('DCMI_point', secondary='things_spatials', backref='things')
 
         def __init__(self, title, description='', type='PhysicalObject'):
             self.uuid = str(uuid4())
