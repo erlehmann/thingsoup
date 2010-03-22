@@ -7,6 +7,7 @@ from thingsoup import model
 from thingsoup.model import meta
 
 from thingsoup.model.thing import Thing
+from thingsoup.model.dcmi import DCMI_point
 
 log = logging.getLogger(__name__)
 
@@ -20,7 +21,13 @@ def setup_app(command, conf, vars):
     log.info("Successfully set up.")
 
     log.info("Adding example thing …")
-    thing = Thing(title="box of spaxen (12 pieces)", description="Developed in close cooperation with SPAX®, a world leader in fasteners, the SPAX® 4x40 screw. It is adapted to the most stringent requirements in terms of wood assembly.")
+    thing = Thing(title="Eiffel Tower", description="A 19th century iron lattice tower located on the Champ de Mars in Paris that has become both a global icon of France.")
     meta.Session.add(thing)
     meta.Session.commit()
     log.info("Successfully added example thing.")
+
+    log.info("Adding example location …")
+    location = DCMI_point(east="2.2945", north="48.8583", name="Champ de Mars")
+    meta.Session.add(location)
+    meta.Session.commit()
+    log.info("Successfully added example location.")
